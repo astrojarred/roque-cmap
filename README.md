@@ -1,6 +1,6 @@
 # Roque Color Map
 
-![Roque Colormap Example](./Example_2.png)
+![Roque Colormap Example](./Example_4.png)
 
 ## Table of Contents
 
@@ -11,7 +11,9 @@
 
 ## About <a name = "about"></a>
 
-`roque-cmap` is a Python package that provides custom color maps for use in data visualization. It includes functions to generate evenly spaced arrays of colors and to create matplotlib colormaps from these custom colors.
+`roque-cmap` is a Python package that provides custom color maps for use in data visualization. It includes functions to generate evenly spaced arrays of colors and to create `matplotlib` colormaps from these custom colors.
+
+The package includes two palettes: `roque` and `roque_chill`. Both colormaps are inspired by the classic `viridis` palette, and are *perceptually uniform*, meaning they are particularly suited to representing numeric values. The `roque_chill` colormap is a modified version of the `roque` with the some of the darkest and brightest colors removed for a more subdued look.
 
 ## Getting Started <a name = "getting_started"></a>
 
@@ -91,13 +93,13 @@ Here is an example of how to use the `roque` and `cmap` functions:
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
-from roque_cmap import cmap
+from roque_cmap import roque, roque_chill
 import numpy as np
 
 # Example 1
 # Create a heatmap with the custom colormap in seaborn
 data = np.random.rand(10, 12)
-sns.heatmap(data, cmap=cmap(10))  # sample 10 colors from the colormap
+sns.heatmap(data, cmap=roque(10))  # sample 10 colors from the colormap
 plt.title("Seaborn Heatmap with Roque colormap")
 plt.show()
 
@@ -109,7 +111,7 @@ for i in range(size):
     for j in range(size):
         data[i, j] = (i + j) / (2 * size - 2)
 
-sns.heatmap(data, cmap=cmap())
+sns.heatmap(data, cmap=roque())
 # hide the ticks and labels
 plt.xticks([])
 plt.yticks([])
@@ -120,10 +122,29 @@ plt.show()
 # Create a matplotlib plot with the custom colormap
 x = np.linspace(0, 10, 100)
 y = np.sin(x)
-plt.scatter(x, y, c=y, cmap=cmap())
+plt.scatter(x, y, c=y, cmap=roque())
 plt.colorbar()
 plt.title("Matplotlib with Roque colormap")
 plt.show()
+
+# Example 4
+# Compare roque and chill-roque side by side
+size = 200
+data = np.zeros((size, size))
+for i in range(size):
+   for j in range(size):
+      data[i, j] = (i + j) / (2 * size - 2)
+
+fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+for a, m in enumerate([roque, roque_chill]):
+   sns.heatmap(data, cmap=m(), ax=axs[a])
+   axs[a].set_title(f"{m().name} colormap")
+   axs[a].set_xticks([])
+   axs[a].set_yticks([])
+
+plt.tight_layout()
+plt.show()
+
 ```
 
 ## Contributing <a name = "contributing"></a>
