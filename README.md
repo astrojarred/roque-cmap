@@ -2,6 +2,9 @@
 
 ![Roque Colormap Example](./Example_4.png)
 
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/astrojarred/roque-cmap) ![GitHub License](https://img.shields.io/github/license/astrojarred/roque-cmap) ![silly badge](https://img.shields.io/badge/pretty-colors-orange)
+
+
 ## Table of Contents
 
 - [About](#about)
