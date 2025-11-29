@@ -11,6 +11,7 @@
   - [Installing with Poetry](#installing_with_poetry)
   - [Installing from source for development (with uv)](#installing_from_source_with_uv)
 - [Usage](#usage)
+- [Testing](#testing)
 - [Contributing](#contributing)
 
 ## About <a name = "about"></a>
@@ -167,6 +168,28 @@ plt.tight_layout()
 plt.show()
 
 ```
+
+## Testing <a name = "testing"></a>
+
+The project uses `pytest` for testing. To run the test suite:
+
+```sh
+uv run pytest
+```
+
+To run tests with verbose output:
+
+```sh
+uv run pytest -v
+```
+
+To check test coverage:
+
+```sh
+uv run pytest --cov=roque_cmap --cov-report=term-missing
+```
+
+This will show which lines of code are covered by tests and which are missing.
 
 ## Contributing <a name = "contributing"></a>
 
