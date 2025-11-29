@@ -6,6 +6,10 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
+  - [Installing with uv](#installing_with_uv)
+  - [Installing with pip](#installing_with_pip)
+  - [Installing with Poetry](#installing_with_poetry)
+  - [Installing from source for development (with uv)](#installing_from_source_with_uv)
 - [Usage](#usage)
 - [Contributing](#contributing)
 
@@ -13,7 +17,7 @@
 
 `roque-cmap` is a Python package that provides custom color maps for use in data visualization. It includes functions to generate evenly spaced arrays of colors and to create `matplotlib` colormaps from these custom colors.
 
-The package includes two palettes: `roque` and `roque_chill`. Both colormaps are inspired by the classic `viridis` palette, and are *perceptually uniform*, meaning they are particularly suited to representing numeric values. The `roque_chill` colormap is a modified version of the `roque` with the some of the darkest and brightest colors removed for a more subdued look.
+The package includes two palettes: `roque` and `roque_chill`. Both colormaps are inspired by the classic `viridis` palette, and are *perceptually uniform*, meaning they are particularly suited to representing numeric values. The `roque_chill` colormap is a modified version of the `roque` with some of the darkest and brightest colors removed for a more subdued look.
 
 ## Getting Started <a name = "getting_started"></a>
 
@@ -21,10 +25,26 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Recommended: Python 3.11 or higher (may also work with lower versions)
 - `matplotlib` for using the built-in colormap
 
-### Installing with pip
+### Installing with uv <a name = "installing_with_uv"></a>
+
+If you prefer using [uv](https://docs.astral.sh/uv/) for environment and dependency management, you can install `roque-cmap` straight from GitHub (the project is not on PyPI):
+
+```sh
+# add the package to an existing uv-managed project
+uv add git+https://github.com/astrojarred/roque-cmap.git
+```
+
+Or spin up a fresh virtual environment and install directly from the repo URL:
+
+```sh
+uv init
+uv add git+https://github.com/astrojarred/roque-cmap.git
+```
+
+### Installing with pip <a name = "installing_with_pip"></a>
 
 ```sh
 # install locally after cloning
@@ -32,13 +52,13 @@ git clone https://github.com/astrojarred/roque-cmap
 pip install ./roque-cmap
 ```
 
-### Installing with Poetry
+### Installing with Poetry <a name = "installing_with_poetry"></a>
 
-Add the following line to you pyproject.toml file:
+Add the following line to your pyproject.toml file:
 
 ```toml
 [tool.poetry.dependencies]
-roque-cmap = { git = "" }
+roque-cmap = { git = "https://github.com/astrojarred/roque-cmap.git" }
 ```
 
 Then run:
@@ -47,7 +67,7 @@ Then run:
 poetry install
 ```
 
-### Installing from source (with poetry)
+### Installing from source for development (with uv) <a name = "installing_from_source_with_uv"></a>
 
 1. Clone the repository:
 
@@ -56,15 +76,16 @@ poetry install
    cd roque-cmap
    ```
 
-2. Install the dependencies using Poetry:
+2. Install the development dependencies:
 
    ```sh
-   poetry install
+   uv sync --group dev
    ```
 
-3. Activate the virtual environment:
+3. Install the package in editable mode:
+
    ```sh
-   poetry shell
+   uv pip install -e .
    ```
 
 ## Usage <a name = "usage"></a>
@@ -88,7 +109,7 @@ Add notes about how to use the system.
   </div>
 </p>
 
-Here is an example of how to use the `roque` and `cmap` functions:
+Here is an example of how to use the `roque` and `roque_chill` functions:
 
 ```python
 import matplotlib.pyplot as plt
@@ -149,29 +170,27 @@ plt.show()
 
 ## Contributing <a name = "contributing"></a>
 
-Install [Poetry](https://python-poetry.org/docs/)
-
 1. Clone the repository or your fork:
 
    ```sh
-   git clone https://github.com/yourusername/roque-cmap.git
+   git clone https://github.com/astrojarred/roque-cmap.git
    cd roque-cmap
    ```
 
-2. Install the dependencies and dev dependencies using Poetry:
+2. Install the development dependencies:
 
    ```sh
-   poetry install --with dev
+   uv sync --group dev
    ```
 
-3. Activate the virtual environment:
+3. Install the package in editable mode:
 
    ```sh
-   poetry shell
+   uv pip install -e .
    ```
 
 4. Run the tests to ensure everything is set up correctly:
 
    ```sh
-   pytest
+   uv run pytest
    ```
