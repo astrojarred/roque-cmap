@@ -1,6 +1,6 @@
 [project]
 name = "roque-cmap"
-version = "1.0"
+version = "1.0.0"
 description = "A Python package that provides custom color maps for use in data visualization."
 readme = "README.md"
 requires-python = ">=3.11"
